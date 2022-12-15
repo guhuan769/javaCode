@@ -1,5 +1,7 @@
 package com.it.test;
 
+import java.util.Properties;
+
 public class test {
     public static void main(String[] args) {
         //1.定义数组 Hello Git
@@ -13,5 +15,10 @@ public class test {
         {
             System.out.print(arr[i] + ",");
         }
+    }
+
+    public class aaa
+    {
+
     }
 }
