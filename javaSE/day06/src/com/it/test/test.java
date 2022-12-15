@@ -2,7 +2,7 @@ package com.it.test;
 
 public class test {
     public static void main(String[] args) {
-        //1.定义数组
+        //1.定义数组 Hello Git
         int[] arr = {11,23,55,66,112,3,1};
         printArr(arr);
     }
