@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置Srping 默认scope为单例 注释快捷键:Ctrl+Shift+/-->
@@ -10,6 +11,66 @@
     <!--配置静态工厂-->
     <!--<bean id="UserDao" class="com.itgh.factory.StaticFactory" factory-method="getUserDao" ></bean>-->
     <!--配置工厂**实例**方法实例化-->
-    <bean id="factory" class="com.itgh.factory.DynamicFactory"></bean>
-    <bean id="UserDao" factory-bean="factory" factory-method="getUserDao" ></bean>
+    <!-- <bean id="factory" class="com.itgh.factory.DynamicFactory"></bean>
+     <bean id="UserDao" factory-bean="factory" factory-method="getUserDao" ></bean>-->
+
+   <!-- <bean id="UserDao" class="com.itgh.dao.Impl.UserDaoImpl">
+        &lt;!&ndash;普通属性注入&ndash;&gt;
+        <property name="username" value="张三"/>
+        <property name="age" value="88"/>
+    </bean>-->
+
+    <bean id="UserDao" class="com.itgh.dao.Impl.UserDaoImpl">
+        <!--集合数据类型 注入-->
+        <property name="strList">
+            <list>
+                <value>1</value>
+                <value>11</value>
+                <value>111</value>
+                <value>1111</value>
+            </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="user1" value-ref="user1">
+
+                </entry>
+                <entry key="user2" value-ref="user2">
+
+                </entry>
+            </map>
+        </property>
+        <property name="properties" >
+            <props>
+                <prop key="p1"   >pp1</prop>
+                <prop key="p2"   >pp2</prop>
+                <prop key="p3"   >pp3</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="user1" class="com.itgh.domain.User">
+        <property name="addr" value="成都"/>
+        <property name="name" value="顾欢"/>
+    </bean>
+        <bean id="user2" class="com.itgh.domain.User">
+        <property name="addr" value="成都2"/>
+        <property name="name" value="顾欢2"/>
+    </bean>
+
+    <!-- <bean id="UserService" class="com.itgh.service.impl.UserServiceImpl" >
+         &lt;!&ndash; 指定到UserServiceImpl 里面的 setUserDao 用作property的name属性 只不过要将大写改为小写 还要去除set
+             此处ref的作用时根据ID导航到bean节点
+          &ndash;&gt;
+         <property name="userDao" ref="UserDao"></property>
+     </bean>-->
+    <!--该BEAN写法是注入setXXX的方法 set方法注入-->
+    <!--<bean id="UserService" class="com.itgh.service.impl.UserServiceImpl" p:userDao-ref="UserDao"/>-->
+    <!--构造函数注入-->
+    <!--ref 引用的是applicationContext容器中的bean id-->
+    <bean id="UserService" class="com.itgh.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="UserDao"></constructor-arg>
+    </bean>
+    <import resource="applicationContext-user.xml"/>
+    <import resource="applicationContext-product.xml"/>
 </beans>
