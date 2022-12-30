@@ -68,9 +68,7 @@
     <!--<bean id="UserService" class="com.itgh.service.impl.UserServiceImpl" p:userDao-ref="UserDao"/>-->
     <!--构造函数注入-->
     <!--ref 引用的是applicationContext容器中的bean id-->
-    <bean id="UserService" class="com.itgh.service.impl.UserServiceImpl">
-        <constructor-arg name="userDao" ref="UserDao"></constructor-arg>
-    </bean>
+
     <import resource="applicationContext-user.xml"/>
     <import resource="applicationContext-product.xml"/>
 </beans>
