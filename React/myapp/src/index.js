@@ -9,7 +9,7 @@ import App from './01-base/01-class组件'
 import App1 from './01-base/02-函数式组件'
 import App2 from './01-base/03-组件得嵌套'
 import App4 from './01-base/04-组件的样式'
-import App5 from './01-base/05-事件绑定-1'
+import App5 from './01-base/12-卖座选项卡'
 // 为提供的创建一个 React 根container并返回根。
 const root = createRoot(document.getElementById("root"));
 // 根可用于将 React 元素渲染到 DOM 中
@@ -33,4 +33,11 @@ const root = createRoot(document.getElementById("root"));
 
 ///<App/> 自动New一个实例 自动解析 APP是否式唯一呢？？组件是否可以嵌套呢
 //
-root.render(<App5/>)
+// <React.StrictMode><App5 />  </React.StrictMode> 严格模式
+
+root.render(
+    //严格模式
+    <React.StrictMode>
+        <App5 />
+    </React.StrictMode>
+)
