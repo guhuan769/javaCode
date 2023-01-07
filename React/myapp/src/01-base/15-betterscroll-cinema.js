@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import BScroll from 'better-scroll'
 
 export default class Cinema extends Component {
 
@@ -32,7 +33,11 @@ export default class Cinema extends Component {
             this.setState({
                 cinemaList: res.data.data.cinemas,
                 backCinemaList: res.data.data.cinemas
+            }, () => {
+                new BScroll('.wrapper')
             })
+
+
             //打印Log
             console.log(this.state.cinemaList)
         }).catch(err => {
@@ -42,35 +47,41 @@ export default class Cinema extends Component {
     //
     //后面讲得声明周期函数 更适合发送ajax
     render() {
-
         return (
             <div>
                 <input onInput={this.onInputEvent} />
-                {
-                    this.state.cinemaList.map(item =>
-                        <dl key={item.cinemaId}>
-                            <dt>{item.name}</dt>
-                            <dl>{item.address}</dl>
-                        </dl>
-                    )
-                }
+                <div className="wrapper" style={{
+                    height: '600px'
+                    , background: 'red', overflow: 'hidden'
+                }}>
+                    <div className="content">
+                        {
+                            this.state.cinemaList.map(item =>
+                                <dl key={item.cinemaId}>
+                                    <dt>{item.name}</dt>
+                                    <dl>{item.address}</dl>
+                                </dl>
+                            )
+                        }
+                    </div></div>
             </div>
         )
     }
-    onInputEvent = (event)=>{
-        console.log("input",event.target.value);
+    onInputEvent = (event) => {
+        console.log("input", event.target.value);
         //如果更改原数组会有不可预期得后果
         var newCinemaList =
-        this.state.backCinemaList.filter(
-            item=>item.name.toUpperCase().includes(event.target.value.toUpperCase())
-            ||item.address.toUpperCase().includes(event.target.value.toUpperCase())
+            this.state.backCinemaList.filter(
+                item => item.name.toUpperCase().includes(event.target.value.toUpperCase())
+                    || item.address.toUpperCase().includes(event.target.value.toUpperCase())
             );
         console.log(newCinemaList);
         this.setState({
-            cinemaList:newCinemaList,
+            cinemaList: newCinemaList,
+        }, () => {
+            new BScroll('.wrapper')
         })
         //cinemaList值会被覆盖
-
         console.log(this.state.cinemaList)
     }
 }
