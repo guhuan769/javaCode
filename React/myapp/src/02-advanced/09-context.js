@@ -98,7 +98,7 @@ class FilmDetail extends Component {
             <GlobalContext.Consumer>
                 {
                     (value) => {
-                        console.log(value)
+                        console.log(value)  
                         return (
                             <div className='filemdetail'>
                                 detail-{value.info}
