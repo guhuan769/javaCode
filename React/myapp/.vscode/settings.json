@@ -1,5 +1,5 @@
 {
     "commentTranslate.hover.enabled": true,
     "commentTranslate.source": "Google",
-    "commentTranslate.multiLineMerge": true
+    "commentTranslate.multiLineMerge": false
 }

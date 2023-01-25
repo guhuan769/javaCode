@@ -10,7 +10,7 @@ import { createRoot } from "react-dom/client";
 // import App2 from './01-base/03-组件得嵌套'
 // import App4 from './01-base/04-组件的样式'
 // import App5 from './03-hooks/09-useMemo'
-import App5 from './03-hooks/15-usereducer3'
+import App5 from './04-router/App'
 // 为提供的创建一个 React 根container并返回根。
 const root = createRoot(document.getElementById("root"));
 // 根可用于将 React 元素渲染到 DOM 中

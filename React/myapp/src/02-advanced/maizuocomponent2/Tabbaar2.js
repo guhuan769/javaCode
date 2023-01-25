@@ -11,7 +11,7 @@ const Tabbar = (props) => {
                 {
                     props.list.map((item, index) =>
                         <li onClick={
-                            () => props.event(idnex)}
+                            () => props.event(index)}
                             className={props.current === index ? 'active' : ''}
                             key={item.id}>{item.Text}
                         </li>

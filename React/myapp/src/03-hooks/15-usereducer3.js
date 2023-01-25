@@ -31,6 +31,7 @@ const reducer = (prevState, action) => {
 }
 
 export default function App() {
+    //缺点 useReducer异步无法执行
     const [state, dispatch] = useReducer(reducer, initailState)
 
     useEffect(() => {
@@ -49,7 +50,8 @@ export default function App() {
     return (
         //</GlobalContext.Provider> 供应商
         <GlobalContext.Provider value={{
-            state, dispatch
+            state,
+            dispatch
         }}>
             <div>
                 {

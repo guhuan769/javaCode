@@ -9,7 +9,7 @@ import Navbar from './maizuocomponent2/Navbar'
 import Tabbaar2 from './maizuocomponent2/Tabbaar2'
 
 /*
-受控就是无状态 不受控就是组件中使用state状态控制不住
+    受控就是无状态 不受控就是组件中使用state状态控制不住
 */
 export default class App extends Component {
     state = {
