@@ -18,7 +18,7 @@ export default class Tabbar extends Component {
                     </li>
                     <li>
                         <NavLink to="/center"
-                            activeClassName="eloncative"
+                            activeClassName="elonactive"
                         >我的</NavLink>
                     </li>
                 </ul>

@@ -4,15 +4,28 @@
 */
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from 'react-redux'
+import store from './06-redux-redux/redux/store'
 //导入得必须首字母大写
 // import App from './01-base/01-class组件'
 // import App1 from './01-base/02-函数式组件'
 // import App2 from './01-base/03-组件得嵌套'
 // import App4 from './01-base/04-组件的样式'
 // import App5 from './03-hooks/09-useMemo'
-import App5 from './04-router/App'
+import App5 from './06-redux-redux/App'
 // 为提供的创建一个 React 根container并返回根。
 const root = createRoot(document.getElementById("root"));
+
+root.render(
+    //严格模式
+    // <React.StrictMode>
+    //Provider负责把store往app传
+    <Provider store={store}>
+        <App5 />
+    </Provider>
+    // </React.StrictMode>
+)
+
 // 根可用于将 React 元素渲染到 DOM 中
 //root.render(<App />);
 
@@ -36,9 +49,3 @@ const root = createRoot(document.getElementById("root"));
 //
 // <React.StrictMode><App5 />  </React.StrictMode> 严格模式
 
-root.render(
-    //严格模式
-    // <React.StrictMode>
-    <App5 />
-    // </React.StrictMode>
-)

@@ -3,6 +3,7 @@ import MRouter from './router/indexRouter'
 import Tabbar from './views/components/Tabbar'
 
 export default class App extends Component {
+    //store.subsribe 订阅
     render() {
         return (
             <div>

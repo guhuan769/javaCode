@@ -49,7 +49,7 @@ export default function Nowplaying(props) {
 
 
 function FilmItem(props) {
-  console.log(props)
+  //console.log(props)
   let { filmId, poster, name } = props
   return <li
     onClick={() =>// handleChangePage(item.filmId)
