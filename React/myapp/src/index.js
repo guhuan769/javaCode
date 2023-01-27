@@ -4,27 +4,40 @@
 */
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from 'react-redux'
-import store from './06-redux-redux/redux/store'
+
+
+//import { Provider } from 'react-redux'
+
+import { store, persistor } from './08-redux-redux-mobile/redux/store';//redux中的数据获取对象信息
+import { PersistGate } from 'redux-persist/integration/react'
 //导入得必须首字母大写
-// import App from './01-base/01-class组件'
-// import App1 from './01-base/02-函数式组件'
-// import App2 from './01-base/03-组件得嵌套'
-// import App4 from './01-base/04-组件的样式'
-// import App5 from './03-hooks/09-useMemo'
-import App5 from './06-redux-redux/App'
+import App from './08-redux-redux-mobile/App'
+import { Provider } from "react-redux";
 // 为提供的创建一个 React 根container并返回根。
 const root = createRoot(document.getElementById("root"));
 
+//移动端
 root.render(
     //严格模式
     // <React.StrictMode>
     //Provider负责把store往app传
-    <Provider store={store}>
-        <App5 />
+    <Provider store={store} >
+        <PersistGate loading={null} persistor={persistor}>
+            <App />
+        </PersistGate>
     </Provider>
     // </React.StrictMode>
 )
+
+//PC
+// root.render(
+//     //严格模式
+//     // <React.StrictMode>
+//     //Provider负责把store往app传
+//             <App />
+//     // </React.StrictMode>
+// )
+
 
 // 根可用于将 React 元素渲染到 DOM 中
 //root.render(<App />);

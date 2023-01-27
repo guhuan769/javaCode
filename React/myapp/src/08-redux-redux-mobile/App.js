@@ -3,11 +3,10 @@ import MRouter from './router/indexRouter'
 import Tabbar from './views/components/Tabbar'
 import store from './redux/store'
 import { connect } from 'react-redux'
+import { Button, Space } from 'antd-mobile'
 
 class App extends Component {
-
     //store.subsribe 订阅
-
     componentDidMount() {
         store.subscribe(() => {
             //此处需要主动的访问store的状态
@@ -21,11 +20,14 @@ class App extends Component {
     render() {
         return (
             <div>
+                {/* <Button size='small' color='danger'>Danger</Button> */}
                 {/* 其他内容 声明式导航 */}
                 <MRouter>
                     {this.props.isShow && <Tabbar></Tabbar>}
                 </MRouter>
             </div>
+
+
         )
     }
 }

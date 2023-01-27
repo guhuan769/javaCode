@@ -16,7 +16,7 @@ function Detail(props) {
     //从props解构出方法
     let { show, hide, match } = props
     useEffect(() => {
-        //console.log("create", props)
+        console.log("create", props)
         // store.dispatch 发布/通知
         //console.log(props.match.params.myid, "利用该ID拿数据")
         //store.dispatch(hide())
