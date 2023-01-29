@@ -1,3 +1,11 @@
+/*
+ * @Author: Elon Snyder
+ * @Date: 2023-01-26 17:27:49
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2023-01-29 11:07:41
+ * @Description: 
+ * @FilePath: \React\myapp\src\08-redux-redux-mobile\views\Films.js
+ */
 import React, { Component } from 'react'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom'
 import Nowplaying from '../views/films/Nowplaying'
@@ -21,7 +29,7 @@ export default class Films extends Component {
                 "X-Requested-With": "XMLHttpRequest"
             }
         }).then(res => {
-            // console.log("res", res.data.data.films)
+            //console.log("res", res.data.data.films)
             this.setState({
                 looklist: res.data.data.films
             })
@@ -67,15 +75,15 @@ export default class Films extends Component {
                         </Tabs.Tab>
                     </Tabs>
                     {/* 路由配置 嵌套路由 */}
-                   
+
                 </div>
                 <Switch>
-                        <Route path="/films/nowplaying"
-                            component={Nowplaying} />
-                        <Route path="/films/comingsoon"
-                            component={Comingsoon} />
-                        <Redirect from="/films" to="/films/nowplaying" />
-                    </Switch>
+                    <Route path="/films/nowplaying"
+                        component={Nowplaying} />
+                    <Route path="/films/comingsoon"
+                        component={Comingsoon} />
+                    <Redirect from="/films" to="/films/nowplaying" />
+                </Switch>
 
             </div>
         )

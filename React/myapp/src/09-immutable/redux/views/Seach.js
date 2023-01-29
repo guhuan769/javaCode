@@ -1,15 +1,6 @@
-/*
- * @Author: Elon Snyder
- * @Date: 2023-01-26 17:27:49
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-01-29 11:08:06
- * @Description: 
- * @FilePath: \React\myapp\src\08-redux-redux-mobile\views\Seach.js
- */
 import React, { useState, useEffect, useMemo } from 'react'
 import store from '../redux/store'
 import getCinemaListAction from '../redux/actionCreator/getCinemaListAction'
-import { Button, SearchBar, Space, Toast } from 'antd-mobile'
 
 export default function Seach() {
     const [myText, setMyText] = useState("")
@@ -46,26 +37,12 @@ export default function Seach() {
 
     return (
         <div>
-            {/*             
             <input value={myText}
                 onChange={(event) => {
                     console.log("onChange", event.target.value)
                     setMyText(event.target.value)
                 }}
-            /> */}
-
-            <div style={{ padding: "10px" }}>
-                <SearchBar
-                    placeholder='请输入内容'
-                    showCancelButton={() => true}
-
-                    value={myText}
-                    onChange={(value) => {
-                        //console.log("onChange", event.target.value)
-                        setMyText(value)
-                    }}
-                />
-            </div>
+            />
             {
                 getCinemaList.map(item =>
                     <dl key={item.cinemId}

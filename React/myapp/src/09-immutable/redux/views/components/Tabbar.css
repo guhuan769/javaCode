@@ -1,0 +1,23 @@
+.elonactive {
+    color: rgba(48, 172, 126, 0.423);
+}
+
+.tabbarDiv {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.tabbarDiv ul{
+    display: flex;
+    list-style: none;
+}
+
+.tabbarDiv li{
+    flex: 1;
+}

@@ -1,3 +1,11 @@
+/*
+ * @Author: Elon Snyder
+ * @Date: 2023-01-26 17:27:49
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2023-01-29 11:09:25
+ * @Description: 
+ * @FilePath: \React\myapp\src\08-redux-redux-mobile\views\Cinemas.js
+ */
 import React, { useEffect } from 'react'
 //import store from '../redux/store'
 import getCinemaListAction from '../redux/actionCreator/getCinemaListAction'
@@ -12,8 +20,9 @@ function Cinemas(props) {
   useEffect(() => {
     console.log("CinemaListReducer", list.length)
     if (list.length === 0) {
-      //   //去后台取数据
-      //   //actiionCreator 里写异步 
+      //去后台取数据
+      //actiionCreator 里写异步 
+     
       getCinemaListAction()
     }
     else {

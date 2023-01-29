@@ -1,5 +1,6 @@
 {
     "commentTranslate.hover.enabled": true,
     "commentTranslate.source": "Google",
-    "commentTranslate.multiLineMerge": false
+    "commentTranslate.multiLineMerge": false,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true
 }
