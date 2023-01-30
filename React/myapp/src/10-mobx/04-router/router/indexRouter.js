@@ -26,7 +26,7 @@ export default class indexRouter extends Component {
                     {this.props.children}
                     {/* Switch被包裹住刷新只會匹配當前頁 */}
                     <Switch>
-                        <Route path="/films" component={Films}></Route>
+                        <Route  path="/films" component={Films}></Route>
                         <Route path="/cinemas" component={Cinemas}></Route>
                         <Route path="/center"
                             render={(props) => {

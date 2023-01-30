@@ -6,7 +6,7 @@ export default class App extends Component {
         return (
             <div>
                 <input />
-                {/* 事件绑定 声明式 匿名函数 */}
+                {/* 事件绑定 声明式 匿名函数 1 */}
                 <button onClick={() => {
                     //函数体 
                     console.log("click")

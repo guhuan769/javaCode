@@ -11,7 +11,7 @@ import { createRoot } from "react-dom/client";
 import { store, persistor } from './08-redux-redux-mobile/redux/store';//redux中的数据获取对象信息
 import { PersistGate } from 'redux-persist/integration/react'
 //导入得必须首字母大写
-import App from './08-redux-redux-mobile/App'
+import App from './11-styled-components/01-透传props'
 import { Provider } from "react-redux";
 // 为提供的创建一个 React 根container并返回根。
 const root = createRoot(document.getElementById("root"));

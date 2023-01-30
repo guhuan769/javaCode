@@ -2,24 +2,35 @@
  * @Author: Elon Snyder
  * @Date: 2023-01-28 19:15:53
  * @LastEditors: Do not edit
- * @LastEditTime: 2023-01-28 20:32:28
+ * @LastEditTime: 2023-01-29 15:26:08
  * @Description: 
  * @FilePath: \React\myappts\src\index.tsx
  */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './04-路由/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 
-import './01-ts基础/04-函数';
+// import './01-ts基础/04-函数';
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </React.StrictMode>
+// );
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   // <React.StrictMode>
-  <App />,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
   // </React.StrictMode>
   // document.getElementById('root')
 );
