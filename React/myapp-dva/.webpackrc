@@ -1,0 +1,12 @@
+{
+  "proxy": {
+    "/api": {
+      "target": "https://i.maoyan.com",
+      "changeOrigin": true
+    },
+    "/web_feed": {
+      "target": "https://r.inews.qq.com",
+      "changeOrigin": true
+    }
+  }
+}

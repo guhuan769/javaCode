@@ -1,3 +1,11 @@
+/*
+ * @Author: Elon Snyder
+ * @Date: 2023-01-06 13:07:08
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2023-01-30 13:56:00
+ * @Description: 
+ * @FilePath: \React\myapp\src\01-base\05-事件绑定-1.js
+ */
 import React, { Component } from 'react'
 
 export default class App extends Component {
