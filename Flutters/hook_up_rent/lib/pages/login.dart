@@ -2,14 +2,24 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-16 15:49:33
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-17 16:09:16
+ * @LastEditTime: 2023-04-23 14:45:25
  * @FilePath: \hook_up_rent\lib\pages\login.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hook_up_rent/pages/utils/common_toast.dart';
+import 'package:hook_up_rent/pages/utils/dio_http.dart';
+import 'package:hook_up_rent/pages/utils/scoped_model_helper.dart';
+import 'package:hook_up_rent/pages/utils/store.dart';
 import 'package:hook_up_rent/routes.dart';
+import 'package:hook_up_rent/scoped_model/auth.dart';
 import 'package:hook_up_rent/widgets/page_content.dart';
+//添加依赖
+import 'dart:convert';
+import 'package:scoped_model/scoped_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,6 +31,40 @@ class LoginPage extends StatefulWidget {
 //有状态组件
 class _LoginPageState extends State<LoginPage> {
   bool showPassword = false;
+
+  var usernameController = TextEditingController();
+  var passwordController = TextEditingController();
+
+  _loginHandle() async {
+    var username = await usernameController.text;
+    var password = await passwordController.text;
+    if (username == '' || password == '') {
+      CommonToast.showToast('用户名或密码不能为空!');
+    }
+
+    const url = '/api/LoginLoginByUserNameAndPwd';
+    var params = {'userName': username, 'password': password};
+    var res = await DioHttp.of(context).post(url, params);
+
+    // var resMap = json.decode(res.data.toString());
+    var resMap = json.decode(res.toString());
+    var code = resMap["code"];
+    var msg = resMap["msg"] ?? '内部错误';
+    CommonToast.showToast(msg);
+    if (code.toString().startsWith('0')) {
+      String token = resMap["token"];
+      Store store = await Store.getInstance();
+      await store.setString(StoreKeys.token, token);
+
+      ScopedModelHelper.getModel<AuthModel>(context).login(token, context);
+      Timer(Duration(seconds: 1), () {
+        //回到上一页面
+        // Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, Routes.home);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,10 +80,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Padding(padding: EdgeInsets.all(10)),
             TextField(
+              controller: usernameController,
               decoration: InputDecoration(labelText: '用户名', hintText: '请输入用户名'),
             ),
             Padding(padding: EdgeInsets.all(10)),
             TextField(
+              controller: passwordController,
               obscureText: !showPassword,
               decoration: InputDecoration(
                   labelText: '密码',
@@ -60,7 +106,8 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 child: Text("登录"),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.home);
+                  _loginHandle();
+                  // Navigator.pushReplacementNamed(context, Routes.home);
                 },
                 // style: ElevatedButton.styleFrom(padding: EdgeInsets.all(110)),
               ),
@@ -69,14 +116,14 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  '还没有账号,',
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/register');
-                    },
-                    child: Text('去注册~'))
+                // Text(
+                //   '还没有账号,',
+                // ),
+                // TextButton(
+                //     onPressed: () {
+                //       Navigator.pushReplacementNamed(context, '/register');
+                //     },
+                //     child: Text('去注册~'))
               ],
             )
           ],

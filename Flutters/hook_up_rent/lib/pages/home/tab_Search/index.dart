@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:hook_up_rent/pages/home/tab_Search/dataList.dart';
 import 'package:hook_up_rent/widgets/production_list_item_widget.dart';
+import 'package:hook_up_rent/widgets/search_bar/index.dart';
 
 class TabSearch extends StatelessWidget {
   const TabSearch({super.key});
@@ -17,7 +18,11 @@ class TabSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('搜索'),
+        title: SearchBarCustom(
+          onSearch: () {
+            Navigator.of(context).pushNamed('search');
+          },
+        ),
       ),
       body: Column(
         children: [

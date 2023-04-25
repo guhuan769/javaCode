@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-19 11:51:13
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-19 14:08:40
+ * @LastEditTime: 2023-04-23 09:03:05
  * @FilePath: \hook_up_rent\lib\pages\home\tab_profile\header.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,7 +38,6 @@ class Header extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center, //水平居中
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //
               // Padding(padding: EdgeInsets.only(top: 6.0)),
               Row(
                 children: [

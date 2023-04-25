@@ -2,13 +2,12 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-19 10:53:52
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-20 09:55:24
+ * @LastEditTime: 2023-04-23 17:05:43
  * @FilePath: \hook_up_rent\lib\pages\home\tab_profile\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
-import 'dart:ffi';
-
+// import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:hook_up_rent/pages/home/tab_profile/function_button.dart';
 import 'package:hook_up_rent/pages/home/tab_profile/header.dart';
@@ -33,8 +32,8 @@ class TabProfile extends StatelessWidget {
       body: ListView(
         children: [
           Header(),
-          FunctionButton(),
-          // Text('这里是内容区'),
+          Text('待开发'),
+          // FunctionButton(),
         ],
       ),
     );

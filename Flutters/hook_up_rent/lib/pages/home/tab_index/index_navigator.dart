@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-18 13:47:59
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-18 15:58:57
+ * @LastEditTime: 2023-04-21 11:59:29
  * @FilePath: \hook_up_rent\lib\pages\home\tab_index\index_navigator.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -31,7 +31,6 @@ class IndexNavigator extends StatelessWidget {
                       // Image.asset(
                       //   item.imageUri,
                       // )
-
                       CommonImage(item.imageUri, width: 47.5,),
                       Text(
                         item.title,
