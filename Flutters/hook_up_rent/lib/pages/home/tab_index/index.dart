@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-18 13:04:19
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-25 12:49:50
+ * @LastEditTime: 2023-04-25 15:13:25
  * @FilePath: \hook_up_rent\lib\pages\tab_index\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE1
  */
@@ -34,7 +34,6 @@ class TabIndex extends StatefulWidget {
 
 class _TabIndexState extends State<TabIndex> {
   final List<productionLineStatistics> dataList = [];
-  int i = 0;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   // _TabIndexState() {
@@ -50,9 +49,8 @@ class _TabIndexState extends State<TabIndex> {
   void _init() async {
     Store store = await Store.getInstance();
     var token = await store.getString(StoreKeys.token);
-    Map<String, dynamic> decodedToken = await JwtDecoder.decode(token);
+    // Map<String, dynamic> decodedToken = await JwtDecoder.decode(token);
     _refreshData();
-    
   }
 
   Future<void> _refreshData() async {
@@ -69,9 +67,6 @@ class _TabIndexState extends State<TabIndex> {
         dataList.add(productionLineStatistics.fromJson(json));
       }
     });
-    // setState(() {
-    //   i = i + 1;
-    // });
     // _refreshController.refreshCompleted();
     _refreshController.requestRefresh();
     await Future.delayed(Duration(milliseconds: 1000));

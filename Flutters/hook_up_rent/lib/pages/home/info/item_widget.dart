@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-19 09:52:18
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-25 11:56:42
+ * @LastEditTime: 2023-04-25 15:33:30
  * @FilePath: \hook_up_rent\lib\pages\home\info\item_widget.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,7 +13,6 @@ var textStyle = TextStyle(color: Colors.white);
 
 class ItemWidget extends StatelessWidget {
   final productionLineStatistics data;
-
   const ItemWidget({super.key, required this.data});
 
   @override
@@ -44,7 +43,7 @@ class ItemWidget extends StatelessWidget {
                       direction: Axis.horizontal,
                       children: [
                         Expanded(
-                          flex: 2,
+                          flex: 22,
                           child: Container(
                             height: 100.0,
                             color: Colors.green[600],
@@ -124,23 +123,22 @@ class ItemWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Expanded(
-                        //   flex: 1,
-                        //   child: Container(
-                        //       height: 100.0,
-                        //       color: Colors.green,
-                        //       child: Column(
-                        //         mainAxisAlignment: MainAxisAlignment.center,
-                        //         children: [
-                        //           Row(
-                        //             children: [
-                        //               Text('设备状态 ', style: textStyle),
-                        //               Text('运行中', style: textStyle)
-                        //             ],
-                        //           )
-                        //         ],
-                        //       )),
-                        // ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                              height: 100.0,
+                              color: Colors.green,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text('> ', style: textStyle),
+                                    ],
+                                  )
+                                ],
+                              )),
+                        ),
                       ],
                     )
                   ],
