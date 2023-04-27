@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-16 15:49:33
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-23 14:45:25
+ * @LastEditTime: 2023-04-27 11:03:02
  * @FilePath: \hook_up_rent\lib\pages\login.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -38,14 +38,16 @@ class _LoginPageState extends State<LoginPage> {
   _loginHandle() async {
     var username = await usernameController.text;
     var password = await passwordController.text;
-    if (username == '' || password == '') {
+    if ( username == '' || password == '') {
       CommonToast.showToast('用户名或密码不能为空!');
     }
 
     const url = '/api/LoginLoginByUserNameAndPwd';
     var params = {'userName': username, 'password': password};
     var res = await DioHttp.of(context).post(url, params);
-
+    if(res == null){
+      CommonToast.showToast('网络无法访问');
+    }
     // var resMap = json.decode(res.data.toString());
     var resMap = json.decode(res.toString());
     var code = resMap["code"];
