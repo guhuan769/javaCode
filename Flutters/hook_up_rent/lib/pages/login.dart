@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-16 15:49:33
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-27 11:03:02
+ * @LastEditTime: 2023-04-27 11:34:40
  * @FilePath: \hook_up_rent\lib\pages\login.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -36,34 +36,38 @@ class _LoginPageState extends State<LoginPage> {
   var passwordController = TextEditingController();
 
   _loginHandle() async {
-    var username = await usernameController.text;
-    var password = await passwordController.text;
-    if ( username == '' || password == '') {
-      CommonToast.showToast('用户名或密码不能为空!');
-    }
+    try {
+      var username = await usernameController.text;
+      var password = await passwordController.text;
+      if (username == '' || password == '') {
+        CommonToast.showToast('用户名或密码不能为空!');
+      }
 
-    const url = '/api/LoginLoginByUserNameAndPwd';
-    var params = {'userName': username, 'password': password};
-    var res = await DioHttp.of(context).post(url, params);
-    if(res == null){
-      CommonToast.showToast('网络无法访问');
-    }
-    // var resMap = json.decode(res.data.toString());
-    var resMap = json.decode(res.toString());
-    var code = resMap["code"];
-    var msg = resMap["msg"] ?? '内部错误';
-    CommonToast.showToast(msg);
-    if (code.toString().startsWith('0')) {
-      String token = resMap["token"];
-      Store store = await Store.getInstance();
-      await store.setString(StoreKeys.token, token);
+      const url = '/api/LoginLoginByUserNameAndPwd';
+      var params = {'userName': username, 'password': password};
+      var res;
 
-      ScopedModelHelper.getModel<AuthModel>(context).login(token, context);
-      Timer(Duration(seconds: 1), () {
-        //回到上一页面
-        // Navigator.of(context).pop();
-        Navigator.pushReplacementNamed(context, Routes.home);
-      });
+      res = await DioHttp.of(context).post(url, params);
+
+      // var resMap = json.decode(res.data.toString());
+      var resMap = json.decode(res.toString());
+      var code = resMap["code"];
+      var msg = resMap["msg"] ?? '内部错误';
+      CommonToast.showToast(msg);
+      if (code.toString().startsWith('0')) {
+        String token = resMap["token"];
+        Store store = await Store.getInstance();
+        await store.setString(StoreKeys.token, token);
+
+        ScopedModelHelper.getModel<AuthModel>(context).login(token, context);
+        Timer(Duration(seconds: 1), () {
+          //回到上一页面
+          // Navigator.of(context).pop();
+          Navigator.pushReplacementNamed(context, Routes.home);
+        });
+      }
+    } catch (error, stacktrace) {
+      CommonToast.showToast('网络无法访问 ERROR: ${error}');
     }
   }
 
