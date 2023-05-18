@@ -11,11 +11,6 @@ class LineDetailEntity {
   late String key;
   late final String deviceName;
   late final String runState;
-  // late String lineName;
-  // late int todayYield ;
-  // late int weekYield ;
-  // late int monthYield ;
-  // late int yearYield ;
 
   LineDetailEntity(this.key, this.deviceName, this.runState);
 

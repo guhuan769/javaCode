@@ -79,7 +79,7 @@ class _LineDetailControlState extends State<LineDetailControl> {
                     TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
               ),
             ),
-          Padding(
+          Padding(//报表图
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 100,
