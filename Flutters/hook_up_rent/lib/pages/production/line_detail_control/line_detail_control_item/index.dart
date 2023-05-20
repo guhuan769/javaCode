@@ -2,19 +2,24 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-25 14:14:37
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-05-18 13:35:18
+ * @LastEditTime: 2023-05-20 09:41:45
  * @FilePath: \hook_up_rent\lib\pages\production\line_detail_control\line_detail_control_item\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hook_up_rent/pages/charts/horizontal_bar_label_chart.dart';
 import 'package:hook_up_rent/pages/production/line_detail/line_detail_entity.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:hook_up_rent/pages/production/line_detail_control/line_detail_control_item/control_Item_item.dart';
+import 'package:hook_up_rent/pages/production/line_detail_control/line_detail_control_item/test_flow_delegate.dart';
+import 'package:hook_up_rent/pages/utils/dio_http.dart';
+import 'package:hook_up_rent/pages/utils/store.dart';
 
-var textStyle = TextStyle(color: Colors.white);
+var textStyle = const TextStyle(
+  color: Colors.white,
+);
 
 class LineDetailControlItem extends StatefulWidget {
   final LineDetailEntity data;
@@ -33,9 +38,21 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      // Your code here
+    _onLoading();
+    // var bbb = widget.data;
+    // _timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
+    // super.initState();
+  }
+
+  void _onLoading() async {
+    Store store = await Store.getInstance();
+    var token = await store.getString(StoreKeys.token);
+    const url = '/api/ProductionGetProductionDeviceInfoApp';
+    var params = {'key': widget.data.key};
+    var res = await DioHttp.of(context).put(url, params, token);
+    var resMap = json.decode(res.toString());
+    setState(() {
+      for (var json in resMap["data"]) {}
     });
   }
 
@@ -45,8 +62,8 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.only(left: 8, right: 8, bottom: 15, top: 0),
-        decoration: BoxDecoration(color: Colors.green),
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 15, top: 0),
+        decoration: const BoxDecoration(color: Colors.green),
         child: Column(
           children: [
             Row(
@@ -68,27 +85,28 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
                         // Expanded(
                         //   child: Text("123321"),
                         // ),
-                        Expanded(
-                            child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Row(
-                                children: [
-                                  // Text('更多 ', style: textStyle),
-                                  TextButton(
-                                    child: Text('更多', style: textStyle),
-                                    onPressed: () {
-                                      setState(() {
-                                        IsShow = !IsShow;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ))
+                        // Expanded(
+                        //     child: Container(
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: [
+                        //       Row(
+                        //         children: [
+                        //           // Text('更多 ', style: textStyle),
+                        //           TextButton(
+                        //             child: Text(!IsShow ? '更多' : '收起',
+                        //                 style: textStyle),
+                        //             onPressed: () {
+                        //               setState(() {
+                        //                 IsShow = !IsShow;
+                        //               });
+                        //             },
+                        //           ),
+                        //         ],
+                        //       )
+                        //     ],
+                        //   ),
+                        // ))
                       ],
                     ),
                     Row(
@@ -103,41 +121,80 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
                         ),
                       ],
                     ),
-                    if (IsShow)
-                      Container(
-                          margin: EdgeInsets.only(top: 5),
-                          // decoration: BoxDecoration(color: Colors.red),
-                          height: 400,
-                          child: Center(
-                            child: MaterialApp(
-                              home: DefaultTabController(
-                                length: tabs.length,
-                                initialIndex: 0,
-                                child: Scaffold(
-                                  appBar: AppBar(
-                                    backgroundColor: Colors.green,
-                                    // toolbarHeight: 20,
-                                    title: Text("工序管理"),
-                                    bottom: TabBar(
-                                        tabs: tabs
-                                            .map((e) => Tab(
-                                                  text: e,
-                                                ))
-                                            .toList()),
-                                  ),
-                                  body: Container(
-                                    child: TabBarView(
-                                      children: tabs
-                                          .map((e) => Tab(
-                                                text: e,
-                                              ))
-                                          .toList(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ))
+                    // if (IsShow)
+                    //   Container(
+                    //       margin: const EdgeInsets.only(top: 5),
+                    //       // decoration: BoxDecoration(color: Colors.red),
+                    //       height: 300,
+                    //       child: Center(
+                    //         child: MaterialApp(
+                    //           home: DefaultTabController(
+                    //             length: tabs.length,
+                    //             initialIndex: 0,
+                    //             child: Scaffold(
+                    //               appBar: AppBar(
+                    //                 backgroundColor: Colors.green,
+                    //                 title: const Text("工序管理"),
+                    //                 bottom: TabBar(
+                    //                     indicatorColor: Colors.white,
+                    //                     tabs: tabs
+                    //                         .map((e) => Tab(
+                    //                               text: e,
+                    //                             ))
+                    //                         .toList()),
+                    //               ),
+                    //               body: Container(
+                    //                 // decoration:
+                    //                 // BoxDecoration(color: Colors.green),
+                    //                 child: TabBarView(
+                    //                   // labelColor:Colors.red
+                    //                   children: tabs
+                    //                       .map(
+                    //                         (e) => Scrollbar(
+                    //                           child: SingleChildScrollView(
+                    //                               child: Container(
+                    //                             child: Column(
+                    //                               mainAxisAlignment:
+                    //                                   MainAxisAlignment.start,
+                    //                               children: <Widget>[
+                    //                                 Container(
+                    //                                   decoration: BoxDecoration(
+                    //                                       color: Colors.green,
+                    //                                       borderRadius:
+                    //                                           BorderRadius
+                    //                                               .circular(5)),
+                    //                                   margin:
+                    //                                       const EdgeInsets.all(
+                    //                                           8),
+                    //                                   padding:
+                    //                                       const EdgeInsets.only(
+                    //                                           left: 3,
+                    //                                           right: 3),
+                    //                                   height: 30,
+                    //                                   child: Row(
+                    //                                     mainAxisAlignment:
+                    //                                         MainAxisAlignment
+                    //                                             .spaceBetween,
+                    //                                     children: [
+                    //                                       Text('弯弓设备 ',
+                    //                                           style: textStyle),
+                    //                                       Text('运行中',
+                    //                                           style: textStyle),
+                    //                                     ],
+                    //                                   ),
+                    //                                 ),
+                    //                               ],
+                    //                             ),
+                    //                           )),
+                    //                         ),
+                    //                       )
+                    //                       .toList(),
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ))
                   ],
                 )),
               ],

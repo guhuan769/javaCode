@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-25 14:11:21
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-29 16:07:02
+ * @LastEditTime: 2023-05-20 10:04:17
  * @FilePath: \hook_up_rent\lib\pages\production\line_detail_control\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,6 +13,7 @@ import 'package:hook_up_rent/pages/charts/horizontal_bar_label_chart.dart';
 import 'package:hook_up_rent/pages/home/info/data.dart';
 import 'package:hook_up_rent/pages/production/line_detail/line_detail_entity.dart';
 import 'package:hook_up_rent/pages/production/line_detail_control/line_detail_control_item/index.dart';
+import 'package:hook_up_rent/pages/production/line_detail_control/line_process_management.dart';
 import 'package:hook_up_rent/pages/utils/dio_http.dart';
 import 'package:hook_up_rent/pages/utils/store.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -79,12 +80,23 @@ class _LineDetailControlState extends State<LineDetailControl> {
                     TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
               ),
             ),
-          Padding(//报表图
+          Padding(
+            //报表图
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 100,
               decoration: BoxDecoration(color: Colors.green),
               child: HorizontalBarLabelChart.withSampleData(lineDetail),
+            ),
+          ),
+          Padding(
+            //工序
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.green),
+              child: LineProcessManagement(
+                detailId: widget.detailId,
+              ),
             ),
           ),
           Column(
@@ -102,5 +114,11 @@ class _LineDetailControlState extends State<LineDetailControl> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }

@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-29 10:03:23
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-29 16:13:29
+ * @LastEditTime: 2023-05-20 09:30:50
  * @FilePath: \hook_up_rent\lib\pages\charts\horizontal_bar_label_chart.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -47,12 +47,6 @@ class HorizontalBarLabelChart extends StatelessWidget {
       new OrdinalSales('月产量', detailData.monthYield),
       new OrdinalSales('年产量', detailData.yearYield),
     ];
-    //   final data = [
-    //   new OrdinalSales('今日产量',11),
-    //   new OrdinalSales('周产量', 22),
-    //   new OrdinalSales('月产量', 33),
-    //   new OrdinalSales('年产量', 44),
-    // ];
     return [
       new charts.Series<OrdinalSales, String>(
           id: 'Sales',
