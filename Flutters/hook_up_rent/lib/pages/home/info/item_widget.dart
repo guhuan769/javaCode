@@ -2,14 +2,15 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-19 09:52:18
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-04-25 15:33:30
+ * @LastEditTime: 2023-05-22 09:19:49
  * @FilePath: \hook_up_rent\lib\pages\home\info\item_widget.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import 'package:flutter/material.dart';
 import 'package:hook_up_rent/pages/home/info/data.dart';
 
-var textStyle = TextStyle(color: Colors.white);
+var textStyle = TextStyle(color: Colors.black);
+var textStyleButton = TextStyle(color: Colors.green);
 
 class ItemWidget extends StatelessWidget {
   final productionLineStatistics data;
@@ -46,7 +47,7 @@ class ItemWidget extends StatelessWidget {
                           flex: 22,
                           child: Container(
                             height: 100.0,
-                            color: Colors.green[600],
+                            color: Colors.white,
                             // decoration: BoxDecoration(borderRadius: BorderRadius(Radius.circular(5))),
                             child: Column(
                               children: [
@@ -57,14 +58,14 @@ class ItemWidget extends StatelessWidget {
                                         Text('        线路 ',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                             )),
                                       ],
                                     ),
                                     Text(data.lineName!,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         )),
                                   ],
                                 ),
@@ -127,13 +128,13 @@ class ItemWidget extends StatelessWidget {
                           flex: 1,
                           child: Container(
                               height: 100.0,
-                              color: Colors.green,
+                              color: Colors.white,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Row(
                                     children: [
-                                      Text('> ', style: textStyle),
+                                      Text('> ', style: textStyleButton),
                                     ],
                                   )
                                 ],

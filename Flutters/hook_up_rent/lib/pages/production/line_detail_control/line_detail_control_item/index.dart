@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-25 14:14:37
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-05-20 09:41:45
+ * @LastEditTime: 2023-05-23 08:50:38
  * @FilePath: \hook_up_rent\lib\pages\production\line_detail_control\line_detail_control_item\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,9 +16,10 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:hook_up_rent/pages/production/line_detail_control/line_detail_control_item/test_flow_delegate.dart';
 import 'package:hook_up_rent/pages/utils/dio_http.dart';
 import 'package:hook_up_rent/pages/utils/store.dart';
+import 'package:hook_up_rent/widgets/common_image.dart';
 
 var textStyle = const TextStyle(
-  color: Colors.white,
+  color: Colors.black,
 );
 
 class LineDetailControlItem extends StatefulWidget {
@@ -32,7 +33,7 @@ class LineDetailControlItem extends StatefulWidget {
 
 class _LineDetailControlItemState extends State<LineDetailControlItem> {
   // late TabController _tabController;
-  List tabs = ["步骤1", "步骤2", "步骤3"];
+  List tabs = []; //"步骤1", "步骤2", "步骤3"
   bool IsShow = false;
   late Timer _timer;
   @override
@@ -62,8 +63,8 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 15, top: 0),
-        decoration: const BoxDecoration(color: Colors.green),
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 8),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           children: [
             Row(
@@ -115,10 +116,70 @@ class _LineDetailControlItemState extends State<LineDetailControlItem> {
                           '设备状态 ',
                           style: textStyle,
                         ),
-                        Text(
-                          '${widget.data.runState}',
-                          style: textStyle,
-                        ),
+                        // Text(
+                        //   '${widget.data.runState}',
+                        //   style: textStyle,
+                        // ),
+                        if (widget.data.runStateInt == 1)
+                          Container(
+                            // width: 80,
+                            child: Row(
+                              children: [
+                                // Text('状态 ',
+                                //     style: textStyle),
+                                CommonImage(
+                                  'static/images/run.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (widget.data.runStateInt == 2)
+                          Container(
+                            // width: 80,
+                            child: Row(
+                              children: [
+                                // Text('状态 ',
+                                //     style: textStyle),
+                                CommonImage(
+                                  'static/images/stop.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (widget.data.runStateInt == 3)
+                          Container(
+                            // width: 80,
+                            child: Row(
+                              children: [
+                                // Text('状态 ',
+                                //     style: textStyle),
+                                CommonImage(
+                                  'static/images/complete.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (widget.data.runStateInt == 4)
+                          Container(
+                            // width: 80,
+                            child: Row(
+                              children: [
+                                // Text('状态 ',
+                                //     style: textStyle),
+                                CommonImage(
+                                  'static/images/yellow.png',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     ),
                     // if (IsShow)

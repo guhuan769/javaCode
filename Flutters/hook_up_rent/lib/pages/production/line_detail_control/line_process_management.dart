@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-05-20 09:07:59
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-05-20 14:06:19
+ * @LastEditTime: 2023-05-22 11:28:15
  * @FilePath: \hook_up_rent\lib\pages\production\line_detail_control\line_process_management.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,9 +14,10 @@ import 'package:hook_up_rent/pages/production/line_detail_control/entity/Process
 import 'package:hook_up_rent/pages/utils/common_toast.dart';
 import 'package:hook_up_rent/pages/utils/dio_http.dart';
 import 'package:hook_up_rent/pages/utils/store.dart';
+import 'package:hook_up_rent/widgets/common_image.dart';
 
 var textStyle = const TextStyle(
-  color: Colors.white,
+  color: Colors.black,
 );
 
 class LineProcessManagement extends StatefulWidget {
@@ -46,6 +47,13 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _timer.cancel();
+    super.dispose();
+  }
+
   void _onLoading() async {
     Store store = await Store.getInstance();
     var token = await store.getString(StoreKeys.token);
@@ -58,6 +66,7 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
       for (var json in resMap["data"]) {
         tabs.add(ProcessManagementByCodeResponse.fromJson(json));
         var jsonResMap = json["pubProcessManagements"];
+        // for( int i = 0; i < jsonResMap.length,i++ ) {
         for (var jsonentity in jsonResMap) {
           var entity = CustomPubProcessManagementForm.fromJson(jsonentity);
           tabs[i].pubProcessManagements.add(entity);
@@ -80,14 +89,12 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
               initialIndex: 0,
               child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.green,
-                  title: const Text("工序管理"),
+                  backgroundColor: Colors.white,
+                  title: Text("工序管理", style: textStyle),
                   bottom: TabBar(
-                      indicatorColor: Colors.white,
+                      indicatorColor: Colors.green,
                       tabs: tabs
-                          .map((e) => Tab(
-                                text: e.tName,
-                              ))
+                          .map((e) => Text(e.tName, style: textStyle))
                           .toList()),
                 ),
                 body: Container(
@@ -103,7 +110,7 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
                                     .map(
                                       (e) => Container(
                                         decoration: BoxDecoration(
-                                            color: Colors.green,
+                                            color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         margin: const EdgeInsets.all(8),
@@ -114,10 +121,80 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('${e.tName} ',
-                                                style: textStyle),
-                                            Text('${e.runtstatusName}',
-                                                style: textStyle),
+                                            Container(
+                                              width: 80,
+                                              child: Row(
+                                                children: [
+                                                  // Text('名称 ', style: textStyle),
+                                                  Text('${e.tName} ',
+                                                      style: textStyle),
+                                                ],
+                                              ),
+                                            ),
+                                            if (e.runtstatus == 1)
+                                              Container(
+                                                // width: 80,
+                                                child: Row(
+                                                  children: [
+                                                    // Text('状态 ',
+                                                    //     style: textStyle),
+                                                    CommonImage(
+                                                      'static/images/run.png',
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            if (e.runtstatus == 2)
+                                              Container(
+                                                // width: 80,
+                                                child: Row(
+                                                  children: [
+                                                    // Text('状态 ',
+                                                    //     style: textStyle),
+                                                    CommonImage(
+                                                      'static/images/stop.png',
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            if (e.runtstatus == 3)
+                                              Container(
+                                                // width: 80,
+                                                child: Row(
+                                                  children: [
+                                                    // Text('状态 ',
+                                                    //     style: textStyle),
+                                                    CommonImage(
+                                                      'static/images/complete.png',
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            if (e.runtstatus == 4)
+                                              Container(
+                                                // width: 80,
+                                                child: Row(
+                                                  children: [
+                                                    // Text('状态 ',
+                                                    //     style: textStyle),
+                                                    CommonImage(
+                                                      'static/images/yellow.png',
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            // const BottomNavigationBarItem(icon: Icon(Icons.data_array_sharp), label: '产量'),
+                                            // BottomNavigationBarItem(icon: icon),
+                                            // Text('${e.runtstatusName}',
+                                            //     style: textStyle),
                                           ],
                                         ),
                                       ),
@@ -134,12 +211,5 @@ class _LineProcessManagementState extends State<LineProcessManagement> {
             ),
           ),
         ));
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _timer.cancel();
-    super.dispose();
   }
 }

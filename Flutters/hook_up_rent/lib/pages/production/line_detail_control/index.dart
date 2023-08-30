@@ -2,7 +2,7 @@
  * @Author: guhuan769 769540542@qq.com
  * @Date: 2023-04-25 14:11:21
  * @LastEditors: guhuan769 769540542@qq.com
- * @LastEditTime: 2023-05-20 10:04:17
+ * @LastEditTime: 2023-05-23 11:51:02
  * @FilePath: \hook_up_rent\lib\pages\production\line_detail_control\index.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,7 +16,12 @@ import 'package:hook_up_rent/pages/production/line_detail_control/line_detail_co
 import 'package:hook_up_rent/pages/production/line_detail_control/line_process_management.dart';
 import 'package:hook_up_rent/pages/utils/dio_http.dart';
 import 'package:hook_up_rent/pages/utils/store.dart';
+import 'package:hook_up_rent/widgets/common_image.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+
+var textStyle = const TextStyle(
+  color: Colors.black,
+);
 
 class LineDetailControl extends StatefulWidget {
   final bool showTitle;
@@ -85,7 +90,7 @@ class _LineDetailControlState extends State<LineDetailControl> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 100,
-              decoration: BoxDecoration(color: Colors.green),
+              decoration: BoxDecoration(color: Colors.white),
               child: HorizontalBarLabelChart.withSampleData(lineDetail),
             ),
           ),
@@ -93,7 +98,41 @@ class _LineDetailControlState extends State<LineDetailControl> {
             //工序
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              decoration: BoxDecoration(color: Colors.green),
+              child: Row(
+                children: [
+                  Text('运行中 ', style: textStyle),
+                  CommonImage(
+                    'static/images/run.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                  Text('未运行 ', style: textStyle),
+                  CommonImage(
+                    'static/images/yellow.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                  Text('已完成 ', style: textStyle),
+                  CommonImage(
+                    'static/images/complete.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                  Text('故障 ', style: textStyle),
+                  CommonImage(
+                    'static/images/stop.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            //工序
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+              decoration: BoxDecoration(color: Colors.white),
               child: LineProcessManagement(
                 detailId: widget.detailId,
               ),

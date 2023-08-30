@@ -130,3 +130,7 @@ flutter:
     - static/images/device.png
     - static/images/地图.png
     - static/images/地图灰色.png
+    - static/images/run.png
+    - static/images/stop.png
+    - static/images/complete.png
+    - static/images/yellow.png
